@@ -4,4 +4,12 @@
 
 ---
 
+### [orbit-engine](https://github.com/Raj123-0/orbit-engine)
+- **Domain**: Aerospace & Orbital Mechanics
+- **Synthesized On**: 2026-09-17
+- **Description**: High-precision orbital propagators, Lambert targeting, and transfer optimization for astrodynamics
+- **Tags**: `orbital-mechanics` `astrodynamics` `lambert-solver` `orbit-propagation` `spaceflight`
+- **Status**: Verified by pytest & AST sandbox ✓
+
+
 *(Initial catalog will be automatically updated as repositories are published.)*

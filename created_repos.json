@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "name": "orbit-engine",
+    "url": "https://github.com/Raj123-0/orbit-engine",
+    "domain": "aerospace_orbital",
+    "domain_name": "Aerospace & Orbital Mechanics",
+    "tagline": "High-precision orbital propagators, Lambert targeting, and transfer optimization for astrodynamics",
+    "topics": [
+      "orbital-mechanics",
+      "astrodynamics",
+      "lambert-solver",
+      "orbit-propagation",
+      "spaceflight",
+      "python"
+    ],
+    "tests_verified": 4,
+    "created_at": "2026-09-17T08:07:15.319804+00:00"
+  }
+]
