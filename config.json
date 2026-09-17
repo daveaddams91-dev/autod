@@ -1,0 +1,63 @@
+{
+  "project_name": "Auto'd",
+  "github_owner": "Raj123-0",
+  "primary_model": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "description": "Google Gemini 2.5 Flash — 1M tokens/min limit, 1M context, frontier algorithmic reasoning"
+  },
+  "fallback_models": [
+    {
+      "provider": "groq",
+      "model": "llama-3.3-70b-versatile",
+      "description": "Groq Llama 3.3 70B — high-speed reasoning"
+    },
+    {
+      "provider": "mistral",
+      "model": "codestral-latest",
+      "description": "Mistral Codestral — specialized programming model"
+    },
+    {
+      "provider": "kilo",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "description": "Kilo AI Keyless Fallback — 200 req/hr with 0 API key required"
+    }
+  ],
+  "generation": {
+    "temperature": 0.35,
+    "max_output_tokens": 8192,
+    "max_repair_attempts": 2
+  },
+  "domains": [
+    {
+      "id": "aerospace_orbital",
+      "name": "Aerospace & Orbital Mechanics",
+      "description": "Orbital state propagators, Keplerian/equinoctial conversions, Lambert trajectory targeting, Hohmann & bi-elliptic transfers, atmospheric drag models, ground-track geometry."
+    },
+    {
+      "id": "numerical_physics",
+      "name": "Computational Physics & Simulations",
+      "description": "Symplectic integrators (Verlet, Ruth 4th order), plasma electrostatic grid solvers, N-body Barnes-Hut gravitational dynamics, 2D lattice Boltzmann fluid dynamics."
+    },
+    {
+      "id": "computational_math",
+      "name": "Computational Mathematics & Number Theory",
+      "description": "Arbitrary precision continuous fractions, Lenstra-Lenstra-Lovász (LLL) lattice reduction, polynomial root isolation (Descartes/Sturm), elliptic curve arithmetic, spectral graph theory."
+    },
+    {
+      "id": "systems_compilers",
+      "name": "Systems Programming & Compilers",
+      "description": "Stack-based virtual machines, compact bytecode assemblers, graph-coloring register allocators, regex derivative engines, zero-copy binary serialization protocols."
+    },
+    {
+      "id": "crypto_algorithms",
+      "name": "Cryptographic & Security Primitives",
+      "description": "Shamir secret sharing over finite fields, toy zero-knowledge Schnorr protocols, verifiable delay functions (VDF via Wesolowski), Merkle Mountain Ranges, lattice cryptography primitives."
+    }
+  ],
+  "verification": {
+    "require_tests": true,
+    "min_test_count": 4,
+    "test_timeout_seconds": 30
+  }
+}
