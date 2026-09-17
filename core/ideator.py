@@ -54,8 +54,8 @@ class Ideator:
 
         return repos
 
-    def choose_domain(self, preferred_domain: Optional[str] = None) -> Dict[str, Any]:
-        """Select target domain for the new repository."""
+    def choose_domain(self, preferred_domain: Optional[str] = None, registry_path: Optional[str] = None) -> Dict[str, Any]:
+        """Select target domain with least-represented algorithmic balancing."""
         if preferred_domain:
             for d in self.domains:
                 if d.get("id") == preferred_domain or d.get("name").lower() == preferred_domain.lower():
@@ -68,7 +68,23 @@ class Ideator:
                 "description": "High precision mathematics, continuous fractions, and algorithmic number theory."
             }
 
-        return random.choice(self.domains)
+        # Calculate counts per domain from created_repos.json
+        counts = {d.get("id"): 0 for d in self.domains}
+        reg_file = registry_path or os.path.join(os.path.dirname(__file__), "..", "created_repos.json")
+        if os.path.exists(reg_file):
+            try:
+                with open(reg_file, "r", encoding="utf-8") as f:
+                    history = json.load(f)
+                for item in history:
+                    dom = item.get("domain")
+                    if dom in counts:
+                        counts[dom] += 1
+            except Exception:
+                pass
+
+        # Sort domains by count ascending (least created first), randomized tie-breaker
+        sorted_domains = sorted(self.domains, key=lambda d: (counts.get(d.get("id"), 0), random.random()))
+        return sorted_domains[0]
 
     def brainstorm(
         self,

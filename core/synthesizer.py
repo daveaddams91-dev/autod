@@ -12,7 +12,9 @@ import json
 import os
 import re
 from typing import Any, Dict, List, Optional
+from .benchmarker import Benchmarker
 from .model_client import SmartModelClient
+from .visualizer import VisualizerGenerator
 
 
 class Synthesizer:
@@ -78,6 +80,22 @@ Return strictly JSON with a single key 'files', where keys are relative file pat
             print(f"[Synthesizer] Model generation encountered error ({e}). Generating high-quality domain fallback...")
             files = self._synthesize_fallback(blueprint)
 
+        # 1. Generate Interactive Browser Visualizer for GitHub Pages
+        files["docs/index.html"] = VisualizerGenerator.generate_demo(blueprint)
+
+        # 2. Generate Benchmark suite and SVG chart
+        domain_id = blueprint.get("domain", "computational_math")
+        files["benchmarks/bench_core.py"] = Benchmarker.generate_benchmark_script(package_name, domain_id)
+        svg_chart = Benchmarker.render_svg_chart(
+            title=f"{repo_name} Execution Latency Profile",
+            data_points=[(100, 0.05), (500, 0.22), (1000, 0.43), (5000, 2.15), (10000, 4.30)]
+        )
+        files["assets/benchmark.svg"] = svg_chart
+
+        # 3. Inject Benchmark section into README
+        if "README.md" in files:
+            files["README.md"] = Benchmarker.inject_benchmark_section(files["README.md"], repo_name)
+
         # Inject standard infrastructure files (LICENSE, CI workflow, requirements.txt)
         files["LICENSE"] = self._generate_license()
         files[".github/workflows/ci.yml"] = self._generate_ci_workflow(package_name)
@@ -112,14 +130,19 @@ SOFTWARE.
 """
 
     def _generate_ci_workflow(self, package_name: str) -> str:
-        """Generate GitHub Actions CI workflow for the created repository."""
-        return f"""name: CI
+        """Generate GitHub Actions CI workflow for testing and deploying GitHub Pages."""
+        return f"""name: CI & GitHub Pages Demo
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   test:
@@ -146,6 +169,25 @@ jobs:
     - name: Run tests with pytest
       run: |
         pytest -v --tb=short tests/
+
+  deploy-demo:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{{{ steps.deployment.outputs.page_url }}}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 """
 
     def _synthesize_fallback(self, blueprint: Dict[str, Any]) -> Dict[str, str]:

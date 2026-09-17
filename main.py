@@ -15,8 +15,10 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
+from core.bridge import EcosystemBridge
 from core.ideator import Ideator
 from core.model_client import SmartModelClient
+from core.notifier import NotificationDispatcher
 from core.publisher import Publisher
 from core.synthesizer import Synthesizer
 from core.verifier import Verifier
@@ -109,28 +111,45 @@ def run_pipeline(
         repo_url = publisher.publish_files(repo_name, final_files)
         print(f"  [OK] Successfully published: {repo_url}")
 
-        # Update showcase and registry
+        # Step 6: Create GitHub Release with distribution wheels
+        print("  -> Building package wheels and creating GitHub Release v0.1.0...")
+        release_url = publisher.create_release(repo_name, tagline, final_files, version="v0.1.0")
+
+        # Step 7: Ecosystem Bridge (Auto-handoff to repo-improver-bot)
+        print("  -> Handoff to repo-improver-bot ecosystem...")
+        bridge = EcosystemBridge(owner=publisher.owner, token=token)
+        bridge.register_new_repo(
+            new_repo_name=repo_name,
+            domain_id=blueprint.get("domain", "general_python"),
+            description=tagline,
+        )
+
+        # Step 8: Update showcase and registry
         showcase_path = os.path.join(os.path.dirname(__file__), "SHOWCASE.md")
         registry_path = os.path.join(os.path.dirname(__file__), "created_repos.json")
 
-        publisher.update_showcase(
-            repo_name=repo_name,
-            tagline=tagline,
-            domain_name=blueprint.get("domain_name"),
-            topics=blueprint.get("topics", []),
-            showcase_path=showcase_path,
-        )
         publisher.record_in_registry(
             registry_path=registry_path,
             blueprint=blueprint,
             repo_url=repo_url,
             test_count=result.test_count,
         )
-        print("  ✓ Updated SHOWCASE.md and created_repos.json")
+        publisher.update_showcase(
+            showcase_path=showcase_path,
+            registry_path=registry_path,
+        )
+        print("  [OK] Updated SHOWCASE.md and created_repos.json")
+
+        # Step 9: Post notification digest & webhooks
+        print("  -> Dispatching notifications...")
+        notifier = NotificationDispatcher(owner=publisher.owner, token=token)
+        notifier.post_github_digest(blueprint, repo_url, result.test_count)
+        notifier.send_discord_notification(blueprint, repo_url, result.test_count)
+        print("  [OK] Notifications dispatched successfully!")
         return 0
 
     except Exception as e:
-        print(f"❌ Failed to publish repository: {e}")
+        print(f"[ERROR] Failed to publish repository: {e}")
         return 1
 
 
