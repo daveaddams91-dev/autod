@@ -1,5 +1,22 @@
 [
   {
+    "name": "flatbyte-compiler",
+    "url": "https://github.com/Raj123-0/flatbyte-compiler",
+    "domain": "systems_compilers",
+    "domain_name": "Systems Programming & Compilers",
+    "tagline": "Zero-copy binary serialization compiler targeting a stack-based VM with graph-coloring register allocation",
+    "topics": [
+      "compiler",
+      "virtual-machine",
+      "serialization",
+      "zero-copy",
+      "register-allocation",
+      "bytecode"
+    ],
+    "tests_verified": 2,
+    "created_at": "2026-09-17T08:20:20.169038+00:00"
+  },
+  {
     "name": "orbit-engine",
     "url": "https://github.com/Raj123-0/orbit-engine",
     "domain": "aerospace_orbital",
