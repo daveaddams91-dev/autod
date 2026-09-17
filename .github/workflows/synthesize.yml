@@ -81,7 +81,7 @@ jobs:
           git config user.email "144442360+Raj123-0[bot]@users.noreply.github.com"
           git fetch origin main || true
           git rebase origin/main || git rebase --abort || true
-          git add SHOWCASE.md created_repos.json || true
+          git add -A SHOWCASE.md created_repos.json 2>/dev/null || git add -A || true
           if ! git diff --cached --quiet; then
             git commit -m "chore: update portfolio showcase with newly synthesized repository"
             git push origin main || true
