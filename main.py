@@ -107,6 +107,9 @@ def run_pipeline(
         print("  -> Setting topic tags...")
         publisher.set_topics(repo_name, blueprint.get("topics", []))
 
+        print("  -> Enabling GitHub Pages deployment...")
+        publisher.enable_pages(repo_name)
+
         print("  -> Pushing verified files to main branch...")
         repo_url = publisher.publish_files(repo_name, final_files)
         print(f"  [OK] Successfully published: {repo_url}")

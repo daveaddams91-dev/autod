@@ -56,6 +56,20 @@ class Publisher:
             raise RuntimeError(f"Failed to create repo {repo_name} (HTTP {resp.status_code}): {resp.text}")
         return resp.json()
 
+    def enable_pages(self, repo_name: str) -> bool:
+        """Enable GitHub Pages with workflow deployment source."""
+        url = f"https://api.github.com/repos/{self.owner}/{repo_name}/pages"
+        payload = {"build_type": "workflow"}
+        try:
+            resp = requests.post(url, headers=self.headers, json=payload, timeout=15)
+            if resp.status_code in (200, 201, 409):
+                print(f"  [OK] GitHub Pages enabled for {repo_name}")
+                return True
+            return False
+        except Exception as e:
+            print(f"  [Pages] Note: enable_pages encountered error: {e}")
+            return False
+
     def set_topics(self, repo_name: str, topics: List[str]) -> bool:
         """Set repository topic tags."""
         url = f"https://api.github.com/repos/{self.owner}/{repo_name}/topics"
