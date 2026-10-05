@@ -4,11 +4,12 @@ Provides primary access to Google Gemini 2.5 Flash (1M TPM, 1M context, frontier
 with automated graceful fallback across Groq, Mistral, OpenRouter, and keyless Kilo AI.
 """
 
+from typing import Any, Dict, List, Optional
 import json
 import os
 import re
 import time
-from typing import Any, Dict, List, Optional
+
 import requests
 
 PROVIDER_ENDPOINTS = {
@@ -63,6 +64,12 @@ class SmartModelClient:
     """Frontier LLM client tailored for complex code and architecture synthesis."""
 
     def __init__(self, config_path: Optional[str] = None):
+        """Init.
+        
+        Args:
+            config_path:
+        
+        """
         self.config = {}
         if config_path and os.path.exists(config_path):
             with open(config_path, "r", encoding="utf-8") as f:
@@ -98,6 +105,19 @@ class SmartModelClient:
         return ""
 
     def _call_gemini(self, model: str, api_key: str, system_prompt: str, user_prompt: str, json_mode: bool) -> str:
+        """Call gemini.
+        
+        Args:
+            model:
+            api_key:
+            system_prompt:
+            user_prompt:
+            json_mode:
+        
+        Returns:
+            The computed result
+        
+        """
         url = PROVIDER_ENDPOINTS["gemini"].format(model=model, key=api_key)
         contents = [{"role": "user", "parts": [{"text": user_prompt}]}]
         body: Dict[str, Any] = {
@@ -131,6 +151,20 @@ class SmartModelClient:
         user_prompt: str,
         json_mode: bool,
     ) -> str:
+        """Call openai compatible.
+        
+        Args:
+            endpoint:
+            model:
+            api_key:
+            system_prompt:
+            user_prompt:
+            json_mode:
+        
+        Returns:
+            The computed result
+        
+        """
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {api_key}" if api_key else "",
