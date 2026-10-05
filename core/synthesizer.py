@@ -112,7 +112,7 @@ Return strictly JSON with a single key 'files', where keys are relative file pat
         """Generate standard MIT License."""
         return """MIT License
 
-Copyright (c) 2026 Raj123-0
+Copyright (c) 2026 rajveersinh-is-dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -374,7 +374,7 @@ def test_orbit_propagation_one_period():
 
 > {tagline}
 
-[![CI](https://github.com/Raj123-0/{repo_name}/actions/workflows/ci.yml/badge.svg)](https://github.com/Raj123-0/{repo_name}/actions/workflows/ci.yml)
+[![CI](https://github.com/rajveersinh-is-dev/{repo_name}/actions/workflows/ci.yml/badge.svg)](https://github.com/rajveersinh-is-dev/{repo_name}/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python: 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 
@@ -391,7 +391,7 @@ This package provides high-accuracy conversions between classical orbital elemen
 ## Installation
 
 ```bash
-git clone https://github.com/Raj123-0/{repo_name}.git
+git clone https://github.com/rajveersinh-is-dev/{repo_name}.git
 cd {repo_name}
 pip install -e .
 ```
@@ -425,7 +425,7 @@ pytest -v tests/
 ```
 
 ## License
-MIT License. Created autonomously by [Auto'd](https://github.com/Raj123-0/autod).
+MIT License. Created autonomously by [Auto'd](https://github.com/rajveersinh-is-dev/autod).
 """,
             "pyproject.toml": f"""[build-system]
 requires = ["setuptools>=61.0"]
@@ -436,7 +436,7 @@ name = "{repo_name}"
 version = "0.1.0"
 description = "{tagline}"
 readme = "README.md"
-authors = [{{ name = "Raj123-0" }}]
+authors = [{{ name = "rajveersinh-is-dev" }}]
 license = {{ text = "MIT" }}
 requires-python = ">=3.10"
 dependencies = []
@@ -527,7 +527,7 @@ def test_periodic_motion():
     assert q_end == pytest.approx(2.0, abs=0.02)
 ''',
             "README.md": f"""# {repo_name}\n\n> {tagline}\n\nSymplectic phase-space preserving numerical integrator.\n""",
-            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "Raj123-0" }}]\nrequires-python = ">=3.10"\n"""
+            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "rajveersinh-is-dev" }}]\nrequires-python = ">=3.10"\n"""
         }
 
     def _build_math_fallback(self, pkg: str, repo_name: str, tagline: str) -> Dict[str, str]:
@@ -622,7 +622,7 @@ def test_pell_solution():
     assert (x, y) == (1766319049, 226153980)
 ''',
             "README.md": f"""# {repo_name}\n\n> {tagline}\n\nHigh-precision continued fraction and Diophantine solver.\n""",
-            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "Raj123-0" }}]\nrequires-python = ">=3.10"\n"""
+            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "rajveersinh-is-dev" }}]\nrequires-python = ">=3.10"\n"""
         }
 
     def _build_crypto_fallback(self, pkg: str, repo_name: str, tagline: str) -> Dict[str, str]:
@@ -712,7 +712,7 @@ def test_insufficient_shares():
     assert sss.reconstruct_secret([shares[0], shares[1]]) != secret
 ''',
             "README.md": f"""# {repo_name}\n\n> {tagline}\n\nCryptographic (k, n) secret sharing implementation.\n""",
-            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "Raj123-0" }}]\nrequires-python = ">=3.10"\n"""
+            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "rajveersinh-is-dev" }}]\nrequires-python = ">=3.10"\n"""
         }
 
     def _build_systems_fallback(self, pkg: str, repo_name: str, tagline: str) -> Dict[str, str]:
@@ -817,5 +817,5 @@ def test_dup_and_swap():
     assert vm.execute(prog) == 49
 ''',
             "README.md": f"""# {repo_name}\n\n> {tagline}\n\nStack-based bytecode virtual machine.\n""",
-            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "Raj123-0" }}]\nrequires-python = ">=3.10"\n"""
+            "pyproject.toml": f"""[build-system]\nrequires = ["setuptools>=61.0"]\nbuild-backend = "setuptools.build_meta"\n[project]\nname = "{repo_name}"\nversion = "0.1.0"\nauthors = [{{ name = "rajveersinh-is-dev" }}]\nrequires-python = ">=3.10"\n"""
         }
