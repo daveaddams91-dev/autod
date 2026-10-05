@@ -4,10 +4,11 @@ Automatically registers newly synthesized repositories in repo-improver-bot's
 active registry so they immediately enter the continuous 24/7 capability ladder.
 """
 
+from typing import Any, Dict, Optional
 import base64
 import json
 import os
-from typing import Any, Dict, Optional
+
 import requests
 
 
@@ -15,12 +16,26 @@ class EcosystemBridge:
     """Handoff engine connecting Auto'd to repo-improver-bot."""
 
     def __init__(self, owner: str = "Raj123-0", bot_repo: str = "repo-improver-bot", token: Optional[str] = None):
+        """Init.
+        
+        Args:
+            owner (str):
+            bot_repo (str):
+            token:
+        
+        """
         self.owner = owner
         self.bot_repo = bot_repo
         self.token = token or os.environ.get("GH_TOKEN") or os.environ.get("REPO_IMPROVER_TOKEN", "")
 
     @property
     def headers(self) -> Dict[str, str]:
+        """Headers.
+        
+        Returns:
+            dict: Result of type dict
+        
+        """
         return {
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/vnd.github.v3+json",
