@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![CI](https://github.com/Raj123-0/autod/actions/workflows/ci.yml/badge.svg)](https://github.com/Raj123-0/autod/actions)
+[![CI](https://github.com/rajveersinh-is-dev/autod/actions/workflows/ci.yml/badge.svg)](https://github.com/rajveersinh-is-dev/autod/actions)
 
 
 Autonomous repository synthesizer that uses frontier LLMs to invent, develop, verify, and publish a production-ready open-source project every 48 hours.
@@ -16,7 +16,7 @@ Autonomous repository synthesizer that uses frontier LLMs to invent, develop, ve
 ## Installation & Usage
 
 ```bash
-git clone https://github.com/Raj123-0/autod.git
+git clone https://github.com/rajveersinh-is-dev/autod.git
 cd autod
 python "core/__init__.py" --help
 ```
