@@ -19,7 +19,7 @@ import requests
 class Publisher:
     """Provisions GitHub repositories, creates releases, and updates portfolio showcase."""
 
-    def __init__(self, owner: str = "Raj123-0", token: Optional[str] = None):
+    def __init__(self, owner: str = "rajveersinh-is-dev", token: Optional[str] = None):
         """Init.
         
         Args:
@@ -119,7 +119,7 @@ class Publisher:
             commands = [
                 ["git", "init", "-b", "main"],
                 ["git", "config", "user.name", "autod[bot]"],
-                ["git", "config", "user.email", f"144442360+{self.owner}[bot]@users.noreply.github.com"],
+                ["git", "config", "user.email", "autod[bot]@users.noreply.github.com"],
                 ["git", "add", "."],
                 ["git", "commit", "-m", commit_message],
                 ["git", "remote", "add", "origin", clone_url],
