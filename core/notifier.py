@@ -4,10 +4,10 @@ Posts updates to GitHub Issue digests and optional webhooks (Discord / Telegram)
 whenever a new repository is synthesized and verified.
 """
 
-import datetime
-import json
-import os
 from typing import Any, Dict, Optional
+import datetime
+import os
+
 import requests
 
 
@@ -15,12 +15,26 @@ class NotificationDispatcher:
     """Dispatches real-time alerts across GitHub, Discord, and Telegram."""
 
     def __init__(self, owner: str = "Raj123-0", repo: str = "autod", token: Optional[str] = None):
+        """Init.
+        
+        Args:
+            owner (str):
+            repo (str):
+            token:
+        
+        """
         self.owner = owner
         self.repo = repo
         self.token = token or os.environ.get("GH_TOKEN") or os.environ.get("REPO_IMPROVER_TOKEN", "")
 
     @property
     def headers(self) -> Dict[str, str]:
+        """Headers.
+        
+        Returns:
+            dict: Result of type dict
+        
+        """
         return {
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/vnd.github.v3+json",
