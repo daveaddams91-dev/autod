@@ -4,6 +4,7 @@ Handles repository provisioning, atomic git pushes, GitHub Pages deployment trig
 semantic release creation with distribution wheels, and showcase portfolio maintenance.
 """
 
+from typing import Any, Dict, List, Optional
 import datetime
 import glob
 import json
@@ -11,7 +12,7 @@ import os
 import subprocess
 import sys
 import tempfile
-from typing import Any, Dict, List, Optional
+
 import requests
 
 
@@ -19,11 +20,24 @@ class Publisher:
     """Provisions GitHub repositories, creates releases, and updates portfolio showcase."""
 
     def __init__(self, owner: str = "Raj123-0", token: Optional[str] = None):
+        """Init.
+        
+        Args:
+            owner (str):
+            token:
+        
+        """
         self.owner = owner
         self.token = token or os.environ.get("GH_TOKEN") or os.environ.get("REPO_IMPROVER_TOKEN", "")
 
     @property
     def headers(self) -> Dict[str, str]:
+        """Headers.
+        
+        Returns:
+            dict: Result of type dict
+        
+        """
         return {
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/vnd.github.v3+json",
