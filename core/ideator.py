@@ -29,7 +29,7 @@ class Ideator:
         """
         self.client = model_client or SmartModelClient(config_path)
         self.config = self.client.config
-        self.owner = self.config.get("github_owner", "Raj123-0")
+        self.owner = self.config.get("github_owner", "rajveersinh-is-dev")
         self.domains = self.config.get("domains", [])
 
     def get_existing_repos(self, token: Optional[str] = None) -> List[str]:
