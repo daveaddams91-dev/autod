@@ -14,7 +14,7 @@ import requests
 class NotificationDispatcher:
     """Dispatches real-time alerts across GitHub, Discord, and Telegram."""
 
-    def __init__(self, owner: str = "Raj123-0", repo: str = "autod", token: Optional[str] = None):
+    def __init__(self, owner: str = "rajveersinh-is-dev", repo: str = "autod", token: Optional[str] = None):
         """Init.
         
         Args:
