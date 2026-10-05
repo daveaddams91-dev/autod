@@ -4,15 +4,16 @@ Ensures that 100% of generated code passes AST syntax parsing and automated
 pytest suites before any repository is published or committed to GitHub.
 """
 
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional, Tuple
 import ast
 import os
 import subprocess
 import sys
 import tempfile
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
 
 from .model_client import SmartModelClient
+
 
 
 @dataclass
@@ -28,6 +29,12 @@ class Verifier:
     """Rigorous sandboxed code verifier and self-healing test engine."""
 
     def __init__(self, model_client: Optional[SmartModelClient] = None):
+        """Init.
+        
+        Args:
+            model_client:
+        
+        """
         self.client = model_client
 
     def verify_syntax(self, files: Dict[str, str]) -> Tuple[bool, List[str]]:
@@ -39,7 +46,7 @@ class Verifier:
                     ast.parse(content, filename=path)
                 except SyntaxError as e:
                     errors.append(f"SyntaxError in {path}:{e.lineno}: {e.msg}")
-        return (len(errors) == 0, errors)
+        return (not errors, errors)
 
     def run_sandbox_tests(self, files: Dict[str, str], timeout_seconds: int = 30) -> Tuple[bool, int, str]:
         """Execute pytest in an isolated temporary directory containing the generated code."""

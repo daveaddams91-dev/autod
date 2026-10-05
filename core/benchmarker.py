@@ -69,6 +69,16 @@ if __name__ == "__main__":
             max_y = 1.0
 
         def to_screen(x: float, y: float) -> Tuple[float, float]:
+            """To screen.
+            
+            Args:
+                x:
+                y:
+            
+            Returns:
+                tuple: Result of type tuple
+            
+            """
             sx = margin_left + ((x - min_x) / (max_x - min_x if max_x > min_x else 1)) * plot_w
             sy = margin_top + plot_h - (y / max_y) * plot_h
             return sx, sy

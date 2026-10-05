@@ -30,6 +30,16 @@ class VisualizerGenerator:
 
     @staticmethod
     def _generate_orbital_demo(repo_name: str, tagline: str) -> str:
+        """Create orbital demo.
+        
+        Args:
+            repo_name:
+            tagline:
+        
+        Returns:
+            The computed result
+        
+        """
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,6 +174,16 @@ class VisualizerGenerator:
 
     @staticmethod
     def _generate_physics_demo(repo_name: str, tagline: str) -> str:
+        """Create physics demo.
+        
+        Args:
+            repo_name:
+            tagline:
+        
+        Returns:
+            The computed result
+        
+        """
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -253,6 +273,16 @@ class VisualizerGenerator:
 
     @staticmethod
     def _generate_math_demo(repo_name: str, tagline: str) -> str:
+        """Create math demo.
+        
+        Args:
+            repo_name:
+            tagline:
+        
+        Returns:
+            The computed result
+        
+        """
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -327,6 +357,16 @@ class VisualizerGenerator:
 
     @staticmethod
     def _generate_systems_demo(repo_name: str, tagline: str) -> str:
+        """Create systems demo.
+        
+        Args:
+            repo_name:
+            tagline:
+        
+        Returns:
+            The computed result
+        
+        """
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -372,6 +412,16 @@ class VisualizerGenerator:
 
     @staticmethod
     def _generate_crypto_demo(repo_name: str, tagline: str) -> str:
+        """Create crypto demo.
+        
+        Args:
+            repo_name:
+            tagline:
+        
+        Returns:
+            The computed result
+        
+        """
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>

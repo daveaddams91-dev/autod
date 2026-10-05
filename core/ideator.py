@@ -5,20 +5,28 @@ Brainstorms novel, production-grade repository concepts aligned with user intere
 zero name or concept collisions with existing repositories.
 """
 
+from typing import Any, Dict, List, Optional
 import json
 import os
-import random
 import re
-from typing import Any, Dict, List, Optional
-import requests
 
 from .model_client import SmartModelClient
+import random
+import requests
+
 
 
 class Ideator:
     """Invents novel repository concepts tailored to the user's technical domains."""
 
     def __init__(self, model_client: Optional[SmartModelClient] = None, config_path: Optional[str] = None):
+        """Init.
+        
+        Args:
+            model_client:
+            config_path:
+        
+        """
         self.client = model_client or SmartModelClient(config_path)
         self.config = self.client.config
         self.owner = self.config.get("github_owner", "Raj123-0")
