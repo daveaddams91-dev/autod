@@ -7,11 +7,9 @@ Transforms an architectural blueprint into a complete, working, production-grade
 - Modern pyproject.toml packaging and GitHub Actions CI workflow
 """
 
-import ast
-import json
-import os
-import re
 from typing import Any, Dict, List, Optional
+import json
+
 from .benchmarker import Benchmarker
 from .model_client import SmartModelClient
 from .visualizer import VisualizerGenerator
@@ -21,6 +19,12 @@ class Synthesizer:
     """Generates complete multi-file repositories from architectural blueprints."""
 
     def __init__(self, model_client: Optional[SmartModelClient] = None):
+        """Init.
+        
+        Args:
+            model_client:
+        
+        """
         self.client = model_client or SmartModelClient()
 
     def synthesize_repository(self, blueprint: Dict[str, Any]) -> Dict[str, str]:
