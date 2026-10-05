@@ -49,10 +49,19 @@ jobs:
       - name: Synthesize and publish repository
         env:
           GH_TOKEN: ${{ secrets.REPO_IMPROVER_TOKEN }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          # Permanent-free-tier providers (add a secret to activate that tier)
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           LLM3_API_KEY: ${{ secrets.LLM3_API_KEY }}
           LLM2_API_KEY: ${{ secrets.LLM2_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          MODELSCOPE_API_KEY: ${{ secrets.MODELSCOPE_API_KEY }}
+          ZAI_API_KEY: ${{ secrets.ZAI_API_KEY }}
+          LLM7_API_KEY: ${{ secrets.LLM7_API_KEY }}
+          COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+          GITHUB_MODELS_TOKEN: ${{ secrets.GITHUB_MODELS_TOKEN }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           DOMAIN_INPUT: ${{ inputs.domain || 'auto' }}
           NAME_INPUT: ${{ inputs.name || '' }}
           DRY_RUN_INPUT: ${{ inputs.dry_run || false }}
@@ -78,7 +87,7 @@ jobs:
         if: success()
         run: |
           git config user.name "autod[bot]"
-          git config user.email "144442360+Raj123-0[bot]@users.noreply.github.com"
+          git config user.email "autod[bot]@users.noreply.github.com"
           git fetch origin main || true
           git rebase origin/main || git rebase --abort || true
           git add -A SHOWCASE.md created_repos.json 2>/dev/null || git add -A || true
