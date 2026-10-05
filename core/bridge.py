@@ -15,7 +15,7 @@ import requests
 class EcosystemBridge:
     """Handoff engine connecting Auto'd to repo-improver-bot."""
 
-    def __init__(self, owner: str = "Raj123-0", bot_repo: str = "repo-improver-bot", token: Optional[str] = None):
+    def __init__(self, owner: str = "rajveersinh-is-dev", bot_repo: str = "repo-improver-bot", token: Optional[str] = None):
         """Init.
         
         Args:
