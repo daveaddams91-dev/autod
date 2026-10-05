@@ -90,7 +90,7 @@ def run_pipeline(
     # Step 5: Publish to GitHub
     repo_name = blueprint.get("repo_name")
     tagline = blueprint.get("tagline")
-    print(f"\n[Phase 4] Publishing to GitHub (Raj123-0/{repo_name})...")
+    print(f"\n[Phase 4] Publishing to GitHub (rajveersinh-is-dev/{repo_name})...")
 
     token = os.environ.get("GH_TOKEN") or os.environ.get("REPO_IMPROVER_TOKEN")
     if not token:

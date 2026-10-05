@@ -1,26 +1,66 @@
 {
   "project_name": "Auto'd",
-  "github_owner": "Raj123-0",
+  "github_owner": "rajveersinh-is-dev",
   "primary_model": {
-    "provider": "gemini",
-    "model": "gemini-2.5-flash",
-    "description": "Google Gemini 2.5 Flash — 1M tokens/min limit, 1M context, frontier algorithmic reasoning"
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "description": "Groq GPT-OSS 120B \u2014 fast, reliable permanent-free tier (no card)"
   },
   "fallback_models": [
     {
-      "provider": "groq",
-      "model": "llama-3.3-70b-versatile",
-      "description": "Groq Llama 3.3 70B — high-speed reasoning"
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "description": "NVIDIA NIM \u2014 free tier, no daily cap"
     },
     {
       "provider": "mistral",
       "model": "codestral-latest",
-      "description": "Mistral Codestral — specialized programming model"
+      "description": "Mistral Codestral \u2014 code-specialised free tier"
+    },
+    {
+      "provider": "openrouter",
+      "model": "openrouter/free",
+      "description": "OpenRouter free model routes"
+    },
+    {
+      "provider": "huggingface",
+      "model": "Qwen/Qwen2.5-72B-Instruct",
+      "description": "Hugging Face Inference Providers (monthly credits)"
+    },
+    {
+      "provider": "modelscope",
+      "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "description": "ModelScope \u2014 2,000 req/day free"
+    },
+    {
+      "provider": "zai",
+      "model": "glm-4.7-flash",
+      "description": "Z.AI GLM-4.7-Flash \u2014 permanently $0"
+    },
+    {
+      "provider": "llm7",
+      "model": "default",
+      "description": "LLM7.io \u2014 key optional, works anonymously"
+    },
+    {
+      "provider": "cohere",
+      "model": "command-r-plus",
+      "description": "Cohere \u2014 free trial key (eval only)"
+    },
+    {
+      "provider": "github_models",
+      "model": "openai/gpt-4o-mini",
+      "description": "GitHub Models \u2014 free via a GitHub token"
+    },
+    {
+      "provider": "cloudflare",
+      "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "description": "Cloudflare Workers AI \u2014 10k neurons/day (needs CLOUDFLARE_ACCOUNT_ID)"
     },
     {
       "provider": "kilo",
       "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
-      "description": "Kilo AI Keyless Fallback — 200 req/hr with 0 API key required"
+      "description": "Kilo AI keyless fallback \u2014 200 req/hr, zero key"
     }
   ],
   "generation": {
@@ -42,7 +82,7 @@
     {
       "id": "computational_math",
       "name": "Computational Mathematics & Number Theory",
-      "description": "Arbitrary precision continuous fractions, Lenstra-Lenstra-Lovász (LLL) lattice reduction, polynomial root isolation (Descartes/Sturm), elliptic curve arithmetic, spectral graph theory."
+      "description": "Arbitrary precision continuous fractions, Lenstra-Lenstra-Lov\u00e1sz (LLL) lattice reduction, polynomial root isolation (Descartes/Sturm), elliptic curve arithmetic, spectral graph theory."
     },
     {
       "id": "systems_compilers",
